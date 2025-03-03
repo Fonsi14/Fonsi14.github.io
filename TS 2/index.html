@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TSA 2</title>
+    <style>
+      body {
+        font-family: Verdana, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-color: #f0ebe3;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        margin: 20px auto;
+        width: fit-content;
+      }
+
+      .day-button {
+        width: 130px;
+        padding: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        outline: none;
+        border: 2px solid transparent;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .day-button:hover {
+        transform: scale(1.1);
+        border-color: white;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .day-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .day-button:hover::after {
+        transform: scaleX(1);
+      }
+
+      #monday {
+        background: #2e8b57;
+      }
+      #tuesday {
+        background: #3cb371;
+      }
+      #wednesday {
+        background: #228b22;
+      }
+      #thursday {
+        background: #32cd32;
+      }
+      #friday {
+        background: #6b8e23;
+      }
+      #saturday {
+        background: #9acd32;
+      }
+      #sunday {
+        background: #8fbc8f;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 80vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .box {
+        width: 450px;
+        height: 450px;
+        position: absolute;
+        left: -500px;
+        border: 10px solid transparent;
+        transition: left 1s ease-in-out, opacity 1s ease-in-out,
+          border-color 1s ease-in-out, background-color 1s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button-container">
+      <button id="monday" class="day-button" onclick="animateBox('#2e8b57')">
+        Monday
+      </button>
+      <button id="tuesday" class="day-button" onclick="animateBox('#3cb371')">
+        Tuesday
+      </button>
+      <button id="wednesday" class="day-button" onclick="animateBox('#228b22')">
+        Wednesday
+      </button>
+      <button id="thursday" class="day-button" onclick="animateBox('#32cd32')">
+        Thursday
+      </button>
+      <button id="friday" class="day-button" onclick="animateBox('#6b8e23')">
+        Friday
+      </button>
+      <button id="saturday" class="day-button" onclick="animateBox('#9acd32')">
+        Saturday
+      </button>
+      <button id="sunday" class="day-button" onclick="animateBox('#8fbc8f')">
+        Sunday
+      </button>
+    </div>
+
+    <div class="container">
+      <div id="box"></div>
+    </div>
+
+    <script>
+      let isAnimating = false;
+
+      function animateBox(color) {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        let container = document.querySelector(".container");
+        let newBox = document.createElement("div");
+        newBox.classList.add("box");
+        newBox.style.borderColor = color;
+        newBox.style.backgroundColor = color;
+        newBox.style.left = "-500px";
+        newBox.style.opacity = "1";
+        container.appendChild(newBox);
+
+        setTimeout(() => {
+          newBox.style.left = "50%";
+          newBox.style.transform = "translateX(-50%)";
+          newBox.style.opacity = "1";
+          newBox.style.backgroundColor = "transparent";
+        }, 10);
+
+        let oldBox = document.querySelector(".box:not(:last-child)");
+        if (oldBox) {
+          oldBox.style.left = "100%";
+          oldBox.style.opacity = "0";
+          oldBox.style.backgroundColor = oldBox.style.borderColor;
+          setTimeout(() => oldBox.remove(), 1000);
+        }
+
+        setTimeout(() => {
+          isAnimating = false;
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
