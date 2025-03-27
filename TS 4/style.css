@@ -1,0 +1,150 @@
+body {
+    font-family: 'Noto Serif JP', serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://static01.nyt.com/images/2018/03/14/dining/14FIlipino1-sub/14FIlipino1-sub-videoSixteenByNineJumbo1600.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: #f8f1e5;
+}
+
+.navbar {
+    background: rgba(34, 17, 0, 0.9);
+    padding: 15px 20px;
+}
+
+.navbar-brand {
+    color: #ffcc66;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+header {
+    padding: 50px 20px;
+    background: rgba(34, 17, 0, 0.85);
+    color: #ffcc66;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #ffdd99;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #ffebc6;
+}
+
+.dishes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.dish-card {
+    background: rgba(51, 26, 0, 0.9);
+    color: #f8f1e5;
+    border: 3px solid #ffb347;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    max-width: 250px;
+    height: 45vh;
+}
+
+.dish-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.8);
+}
+
+.dish-card img {
+    width: 100%;
+    height: 55%;
+    border-radius: 8px;
+}
+
+.dish-card h3 {
+    margin-top: 10px;
+    font-size: 1.4rem;
+    color: #ffd700;
+}
+
+.dish-card p {
+    font-size: 1rem;
+    color: #ffebc6;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.popup-content {
+    background: #2a1905;
+    color: #ffebc6;
+    border: 3px solid #ffb347;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 75%;
+    max-height: 80%;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.8);
+    transition: transform 0.3s ease-in-out;
+}
+
+#popup-image {
+    width: 45%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px auto;
+}
+
+.popup-overlay.closing {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 35px;
+    cursor: pointer;
+    color: #ffdd57;
+    transition: color 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    color: #ffa500;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
